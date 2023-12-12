@@ -1,6 +1,7 @@
 package com.ebay.tests;
 
 import com.ebay.utils.SearchData;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,14 +16,17 @@ public class SearchItemTest extends TestBase{
 
     @Test
     public void searchItemPositiveTest() {
-        String secondItem = app.getItem().getSecondItemName(SearchData.ITEM);
-        System.out.println(secondItem);
+        String secondItem = app.getItem().getSecondItemName(SearchData.SECOND_ITEM);
+       // System.out.println(secondItem);
+        app.getItem().enterSecondItemNameToSearch(secondItem);
+        app.getItem().clickOnFindenButton();
+
+        String firstItem = app.getItem().getFirstItemName(SearchData.FIRST_ITEM);
+        System.out.println(firstItem);
+
+        Assert.assertEquals(firstItem,secondItem);
     }
 }
 
-
-    /*   Remember second element in search results
-        Enter the memorized value in the search bar
-        Find and check that the product name matches the stored value*/
 
 
